@@ -1,0 +1,95 @@
+---
+openapi: 3.0.2
+info:
+  title: myproject
+  version: 1.0.0
+  description: AddressAPI
+  contact:
+    email: meetraghuram@gmail.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+paths:
+  /addresses:
+    get:
+      tags: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Address'
+          description: ListOFAddresses
+      summary: ListAddresses
+    post:
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Address'
+        required: false
+      responses:
+        "201":
+          description: Response
+      summary: CreateAddresses
+  /addresses/{addressid}:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+          description: Resp
+      summary: GetAddress
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Address'
+      responses:
+        "204":
+          description: No Content
+      summary: UpdateAddress
+    delete:
+      responses:
+        "204":
+          description: NOContent
+      summary: DeleteAddress
+    parameters:
+    - name: addressid
+      description: The Address ID
+      schema:
+        type: string
+      in: path
+      required: true
+components:
+  schemas:
+    Address:
+      title: Root Type for Address
+      description: ""
+      required: []
+      type: object
+      properties:
+        id:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        ZIPCode:
+          description: ""
+          type: string
+        address1:
+          description: ""
+          type: string
+      example:
+        id: "12345"
+        city: HYD
+        state: TS
